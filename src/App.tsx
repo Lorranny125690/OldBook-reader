@@ -78,7 +78,7 @@ const Home = () => {
         </div>
 
         {/* Nav - Desktop */}
-        <nav className="hidden md:flex space-x-6 text-sm font-light items-center">
+        <nav className="hidden md:flex space-x-6 text-sm font-light items-center scale-120">
           <a
             href="#"
             className="text-blue-400 hover:scale-125 transition-all duration-300 hover:px-2"
@@ -102,7 +102,7 @@ const Home = () => {
         </nav>
 
         {/* Ações topo */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 scale-120">
           <button className="hover:text-cyan-300 transition duration-300">
             <svg
               className="w-5 h-5"
