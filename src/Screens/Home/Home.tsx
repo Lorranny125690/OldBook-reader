@@ -67,12 +67,12 @@ const Home = () => {
       </aside>
 
       {/* Main content */}
-      <motion.main 
-      id="collec"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }} className="flex-1 px-6 sm:px-8 md:px-20 py-10 flex flex-col md:flex-row items-center justify-center relative gap-10">
-        <div className="max-w-2xl space-y-4 text-center md:text-left">
+      <main className="flex-1 px-6 sm:px-8 md:px-20 py-10 flex flex-col md:flex-row items-center justify-center relative gap-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8}} 
+          className="max-w-2xl space-y-4 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl hover:text-6xl transition-all duration-300 font-light leading-snug">
             Onde o passado <br />
             <span className="text-cyan-400 font-bold">Ganha voz no futuro</span>
@@ -85,13 +85,16 @@ const Home = () => {
           <div className="mt-6 flex justify-center md:justify-start">
             <FiPaperclip className="w-6 h-6 text-cyan-400" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Logo */}
-        <div className="flex transition-transform transform scale-95 hover:scale-100 transition-all duration-300">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2}} className="flex transition-transform transform scale-95 hover:scale-100 transition-all duration-300">
           <img src={Logo} alt="OldBook Logo" />
-        </div>
-      </motion.main>
+        </motion.div>
+      </main>
 
       {/* Top Navigation */}
 

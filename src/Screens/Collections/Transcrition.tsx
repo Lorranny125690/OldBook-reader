@@ -75,12 +75,7 @@ const Collections = () => {
       </aside>
 
       {/* Main content */}
-      <motion.main 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }} 
-        className="flex-1 px-6 sm:px-8 md:px-20 flex flex-col mt-30 relative gap-10"
-      >
+      <main className="flex-1 px-6 sm:px-8 md:px-20 flex flex-col mt-30 relative gap-10">
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-96 text-center">
           <p className="text-gray-400 text-xl mb-4">Vazio</p>
@@ -92,7 +87,11 @@ const Collections = () => {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8}} 
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {items.map((item) => (
             <div
               key={item.id}
@@ -127,9 +126,9 @@ const Collections = () => {
           >
             <FaPlus className="text-blue-300" size={24} />
           </button>
-        </div>
+        </motion.div>
       )}
-      </motion.main>
+      </main>
     </div>
   );
 };
