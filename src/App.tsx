@@ -1,35 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo from "./assets/Logo.png";
+import { Header } from "./components/Header";
 import { FiPaperclip } from "react-icons/fi";
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaRegUser,
   FaTwitter,
-  FaBars,
-  FaTimes,
 } from "react-icons/fa";
 import { useRef, useEffect } from "react";
 
-
 const Home = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-  const [userMenuOpen, setUserMenuOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setUserMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="flex h-screen bg-gray-900 text-white font-serif overflow-x-hidden">
@@ -88,108 +69,9 @@ const Home = () => {
       </main>
 
       {/* Top Navigation */}
-      <header className="absolute top-0 w-full flex items-center justify-between px-6 sm:px-10 md:px-20 py-4 bg-transparent text-white">
-        <div className="text-xl">
-          <span className="text-blue-400 font-semibold">OldBook</span>
-          <span className="font-light"> Reader</span>
-        </div>
-
-        {/* Nav - Desktop */}
-        <nav className="hidden md:flex space-x-6 text-sm font-light items-center scale-120">
-          <a
-            href="#"
-            className="text-blue-400 hover:scale-125 transition-all duration-300 hover:px-2"
-          >
-            Home
-          </a>
-          <span className="text-white">•</span>
-          <a
-            href="#"
-            className="hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300"
-          >
-            Coleções públicas
-          </a>
-          <span className="text-white">•</span>
-          <a
-            href="#"
-            className="hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300"
-          >
-            Transcrever
-          </a>
-        </nav>
-
-        {/* Ações topo */}
-        <div className="flex items-center space-x-4 scale-120">
-          <button className="hover:text-cyan-300 cursor-pointer transition duration-300">
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-          <div className="relative" ref={menuRef}>
-            <button
-              onClick={() => setUserMenuOpen(prev => !prev)}
-              className="hover:text-cyan-300 cursor-pointer transition duration-300"
-            >
-              <FaRegUser />
-            </button>
-
-            <div
-              className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50 bg-slate-500 text-white overflow-hidden transform transition-all duration-300 origin-top
-                ${userMenuOpen ? 'scale-y-100 opacity-100 max-h-96' : 'scale-y-0 opacity-0 max-h-0'}
-              `}
-              style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }} // opcional: ease-out
-            >
-              <ul className="py-2 text-sm">
-                <li>
-                  <button className="block w-full text-left px-4 py-2 hover:text-gray-300 transition">
-                    Ver perfil
-                  </button>
-                </li>
-                <li>
-                  <button className="block w-full text-left px-4 py-2 hover:text-gray-300 transition">
-                    Editar perfil
-                  </button>
-                </li>
-                <li>
-                  <button className="block w-full text-left px-4 py-2 text-red-600 hover:text-red-300 transition">
-                    Sair
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Hamburguer - mobile only */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white hover:text-cyan-300 transition"
-          >
-            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-          </button>
-        </div>
-      </header>
+      <Header/>
 
       {/* Mobile Menu */}
-      <div
-        className={`fixed top-16 left-0 w-full bg-gray-800 text-white flex flex-col items-center space-y-6 overflow-hidden transition-all duration-500 md:hidden ${
-          menuOpen ? "max-h-96 py-6" : "max-h-0 py-0"
-        }`}
-      >
-        <a href="#" className="hover:text-cyan-300 text-lg">Home</a>
-        <a href="#" className="hover:text-cyan-300 text-lg">Coleções públicas</a>
-        <a href="#" className="hover:text-cyan-300 text-lg">Transcrever</a>
-      </div>
     </div>
   );
 };

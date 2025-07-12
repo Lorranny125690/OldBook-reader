@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Axios from "../../../scripts/Axios"; // Importando o Axios
 import { useAuth } from '../../../contexts/authenticatedUser';
 
 export const Login = () => {
