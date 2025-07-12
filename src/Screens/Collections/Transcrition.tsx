@@ -2,11 +2,43 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
+  FaPlus,
+  FaTrash,
   FaTwitter,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+const mockItems = [
+  {
+    id: 1,
+    title: "Exemplo 1",
+    image: "https://i.pinimg.com/736x/ef/27/07/ef2707f278cac200943fcea2a290244d.jpg",
+  },
+  {
+    id: 2,
+    title: "Exemplo 2",
+    image: "https://i.pinimg.com/736x/ef/27/07/ef2707f278cac200943fcea2a290244d.jpg",
+  },
+];
 
 const Collections = () => {
+  const [items, setItems] = useState(mockItems);
+
+  const handleAdd = () => {
+    const id = items.length + 1;
+    const newItem = {
+      id,
+      title: `Exemplo ${id}`,
+      image: "https://i.pinimg.com/736x/ef/27/07/ef2707f278cac200943fcea2a290244d.jpg",
+    };
+    setItems([...items, newItem]);
+  };
+
+  const handleDelete = (id: number) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
   return (
     <div
       className="flex h-screen bg-gray-900 text-white font-serif" id="collec"
@@ -49,30 +81,54 @@ const Collections = () => {
         transition={{ duration: 0.8, ease: "easeOut" }} 
         className="flex-1 px-6 sm:px-8 md:px-20 flex flex-col mt-30 relative gap-10"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
-          {Array.from({ length: 6 }).map((_, index) => (
+      {items.length === 0 ? (
+        <div className="flex flex-col items-center justify-center h-96 text-center">
+          <p className="text-gray-400 text-xl mb-4">Vazio</p>
+          <button
+            onClick={handleAdd}
+            className="text-blue-400 underline hover:text-blue-600 transition"
+          >
+            Adicionar nova leitura
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {items.map((item) => (
             <div
-              key={index}
-              className="bg-gray-800 cursor-pointer rounded-b-xl overflow-hidden shadow-md hover:scale-105 transition-all duration-300 ease-in-out"
+              key={item.id}
+              className="bg-gray-800 rounded-b-xl overflow-hidden shadow-md hover:scale-105 transition-all duration-300 ease-in-out"
             >
-              {/* Imagem simulada */}
+              {/* Imagem */}
               <div className="h-60 w-full bg-gray-700 flex items-center justify-center">
                 <img
-                  src="https://i.pinimg.com/736x/ef/27/07/ef2707f278cac200943fcea2a290244d.jpg"
-                  alt={`Manuscrito ${index + 1}`}
+                  src={item.image}
+                  alt={item.title}
                   className="object-cover h-full w-full"
                 />
               </div>
 
-              {/* Rodapé com nome */}
-              <div className="bg-[#1e1e1e] px-4 py-3 text-center">
-                <p className="text-sm font-semibold text-white">
-                  Manuscrito Antigo #{index + 1}
-                </p>
+              {/* Rodapé */}
+              <div className="bg-[#1e1e1e] px-4 py-3 flex items-center justify-between">
+                <p className="text-sm font-semibold text-white">{item.title}</p>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="text-red-400 hover:text-red-600 transition"
+                >
+                  <FaTrash size={12} />
+                </button>
               </div>
             </div>
           ))}
+
+          {/* Botão de adicionar novo */}
+          <button
+            onClick={handleAdd}
+            className="bg-gray-700 hover:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-60"
+          >
+            <FaPlus className="text-blue-300" size={24} />
+          </button>
         </div>
+      )}
       </motion.main>
     </div>
   );

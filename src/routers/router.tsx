@@ -4,6 +4,7 @@ import Login from '../Screens/Auth/Login';
 import Home from '../Screens/Home/Home';
 import { Header } from '../components/Header';
 import Collections from '../Screens/Collections/Collections';
+import UserCollections from "../Screens/Collections/Transcrition";
 
 export const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/collections" element={<Collections />} />
+        <Route path="/transcrition" element={<UserCollections/>} />
       </Routes>
     </BrowserRouter>
   );

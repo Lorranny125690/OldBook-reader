@@ -32,10 +32,7 @@ const Home = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+    <div
       className="flex h-screen bg-gray-900 text-white font-serif overflow-hidden"
     >  
       {/* Sidebar (aparece só em sm+) */}
@@ -70,7 +67,11 @@ const Home = () => {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 px-6 sm:px-8 md:px-20 py-10 flex flex-col md:flex-row items-center justify-center relative gap-10">
+      <motion.main 
+      id="collec"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }} className="flex-1 px-6 sm:px-8 md:px-20 py-10 flex flex-col md:flex-row items-center justify-center relative gap-10">
         <div className="max-w-2xl space-y-4 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl hover:text-6xl transition-all duration-300 font-light leading-snug">
             Onde o passado <br />
@@ -90,7 +91,7 @@ const Home = () => {
         <div className="flex transition-transform transform scale-95 hover:scale-100 transition-all duration-300">
           <img src={Logo} alt="OldBook Logo" />
         </div>
-      </main>
+      </motion.main>
 
       {/* Top Navigation */}
 
@@ -104,7 +105,7 @@ const Home = () => {
         <a href="#" className="hover:text-cyan-300 text-lg">Coleções públicas</a>
         <a href="#" className="hover:text-cyan-300 text-lg">Transcrever</a>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

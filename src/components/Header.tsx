@@ -64,7 +64,7 @@ export const Header = () => {
         <span className="text-white">•</span>
 
         <NavLink
-          to="/transcrever"
+          to="/transcrition"
           className={({ isActive }) =>
             `hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300 ${
               isActive ? "text-blue-500 font-bold" : "text-gray-500"
