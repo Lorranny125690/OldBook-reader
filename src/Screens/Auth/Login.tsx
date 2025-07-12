@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import image2 from './assets/image2.png';
-import image1 from './assets/image1.png';
-import image3 from './assets/image3.jpg';
+import image2 from '../../assets/image2.png';
+import image1 from '../../assets/image1.png';
+import image3 from '../../assets/image3.jpg';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { useAuth } from "../../contexts/authenticatedUser";
+import { Link } from "react-router-dom";
 
-const App: React.FC = () => {
+export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { onLogin } = useAuth(); // Pegando a função de login do contexto
@@ -112,10 +113,9 @@ const App: React.FC = () => {
               <div className="flex justify-center">
                 <button
                   type="button"
-                  onClick={login}
                   className="w-30 cursor-pointer justify-center py-3 px-6 bg-black text-white rounded-full font-medium text-sm transition-colors hover:bg-gray-900"
                 >
-                  Entrar
+                  <Link to="/home">Entrar</Link>
                 </button>
               </div>
             </div>
@@ -179,4 +179,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Login;

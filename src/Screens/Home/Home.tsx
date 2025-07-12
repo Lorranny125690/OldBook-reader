@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "./assets/Logo.png";
+import Logo from "../../assets/Logo.png"
 import { FiPaperclip } from "react-icons/fi";
 import {
   FaFacebookF,
