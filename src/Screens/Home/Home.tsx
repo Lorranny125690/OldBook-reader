@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Logo from "../../assets/Logo.png"
 import { FiPaperclip } from "react-icons/fi";
 import {
@@ -10,7 +9,8 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,7 +31,12 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white font-serif overflow-x-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="flex h-screen bg-gray-900 text-white font-serif overflow-hidden"
+    >  
       {/* Sidebar (aparece só em sm+) */}
       <aside className="hidden sm:flex bg-gray-800 w-14 hover:w-72 px-4 py-4 flex-col justify-center hover:justify-start items-center text-sm tracking-widest font-light transition-all hover:z-10 duration-300 ease-out group overflow-hidden gap-6">
         <span className="rotate-[-90deg] whitespace-nowrap text-3xl leading-none group-hover:hidden">
@@ -189,7 +194,7 @@ const Home = () => {
         <a href="#" className="hover:text-cyan-300 text-lg">Coleções públicas</a>
         <a href="#" className="hover:text-cyan-300 text-lg">Transcrever</a>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
