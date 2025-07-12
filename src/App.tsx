@@ -10,9 +10,26 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { useRef, useEffect } from "react";
+
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="flex h-screen bg-gray-900 text-white font-serif overflow-x-hidden">
@@ -103,7 +120,7 @@ const Home = () => {
 
         {/* Ações topo */}
         <div className="flex items-center space-x-4 scale-120">
-          <button className="hover:text-cyan-300 transition duration-300">
+          <button className="hover:text-cyan-300 cursor-pointer transition duration-300">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -119,9 +136,39 @@ const Home = () => {
               />
             </svg>
           </button>
-          <button className="hover:text-cyan-300 transition duration-300">
-            <FaRegUser />
-          </button>
+          <div className="relative" ref={menuRef}>
+            <button
+              onClick={() => setUserMenuOpen(prev => !prev)}
+              className="hover:text-cyan-300 cursor-pointer transition duration-300"
+            >
+              <FaRegUser />
+            </button>
+
+            <div
+              className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50 bg-slate-500 text-white overflow-hidden transform transition-all duration-300 origin-top
+                ${userMenuOpen ? 'scale-y-100 opacity-100 max-h-96' : 'scale-y-0 opacity-0 max-h-0'}
+              `}
+              style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }} // opcional: ease-out
+            >
+              <ul className="py-2 text-sm">
+                <li>
+                  <button className="block w-full text-left px-4 py-2 hover:text-gray-300 transition">
+                    Ver perfil
+                  </button>
+                </li>
+                <li>
+                  <button className="block w-full text-left px-4 py-2 hover:text-gray-300 transition">
+                    Editar perfil
+                  </button>
+                </li>
+                <li>
+                  <button className="block w-full text-left px-4 py-2 text-red-600 hover:text-red-300 transition">
+                    Sair
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
 
           {/* Hamburguer - mobile only */}
           <button
