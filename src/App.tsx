@@ -1,62 +1,109 @@
-import React from "react";
-import Logo from "./assets/Logo.png"
+import React, { useState } from "react";
+import Logo from "./assets/Logo.png";
 import { FiPaperclip } from "react-icons/fi";
-import { FaRegUser } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaRegUser,
+  FaTwitter,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const Home = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="flex h-screen bg-gray-900 text-white font-serif">
-      {/* Sidebar */}
-      <aside className="bg-gray-800 w-14 hover:w-48 flex flex-col items-center justify-center text-sm tracking-widest font-light transition-all hover:z-10 duration-300 ease-out group overflow-hidden">
-        {/* Texto "MAIS INFORMAÇÕES" (some ao hover) */}
+    <div className="flex h-screen bg-gray-900 text-white font-serif overflow-x-hidden">
+      {/* Sidebar (aparece só em sm+) */}
+      <aside className="hidden sm:flex bg-gray-800 w-14 hover:w-72 px-4 py-4 flex-col justify-center hover:justify-start items-center text-sm tracking-widest font-light transition-all hover:z-10 duration-300 ease-out group overflow-hidden gap-6">
         <span className="rotate-[-90deg] whitespace-nowrap text-3xl leading-none group-hover:hidden">
           MAIS INFORMAÇÕES
         </span>
 
-        {/* Texto "NÚMERO" (aparece ao hover) */}
-        <span className="rotate-[-90deg] whitespace-nowrap text-3xl leading-none hidden group-hover:block text-white">
-          NÚMERO
-        </span>
+        <div className="hidden group-hover:flex flex-col items-start space-y-4 text-white text-left mt-4">
+          <span className="text-base font-medium">NÚMERO:</span>
+          <span className="text-sm text-gray-300">+55 (xx) xxxxx-xxxx</span>
+
+          <span className="text-base font-medium">EMAIL:</span>
+          <span className="text-sm text-gray-300">contato@oldbook.com</span>
+
+          <span className="text-base font-medium">Redes Sociais:</span>
+          <div className="flex gap-4 mt-1">
+            <a href="#" className="hover:text-[#0077FF] transition duration-300">
+              <FaFacebookF size={18} />
+            </a>
+            <a href="#" className="hover:text-[#1DA1F2] transition duration-300">
+              <FaTwitter size={18} />
+            </a>
+            <a href="#" className="hover:text-[#C13584] transition duration-300">
+              <FaInstagram size={18} />
+            </a>
+            <a href="#" className="hover:text-[#0A66C2] transition duration-300">
+              <FaLinkedinIn size={18} />
+            </a>
+          </div>
+        </div>
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 p-20 flex items-center justify-center relative">
-        <div className="max-w-2xl space-y-4">
-          <h1 className="text-5xl hover:text-6xl transition-all duration-300 font-light leading-snug">
+      <main className="flex-1 px-6 sm:px-8 md:px-20 py-10 flex flex-col md:flex-row items-center justify-center relative gap-10">
+        <div className="max-w-2xl space-y-4 text-center md:text-left">
+          <h1 className="text-4xl md:text-5xl hover:text-6xl transition-all duration-300 font-light leading-snug">
             Onde o passado <br />
             <span className="text-cyan-400 font-bold">Ganha voz no futuro</span>
           </h1>
-          <p className="text-lg font-light text-gray-300">
+          <p className="text-base md:text-lg font-light text-gray-300">
             Bem-vindo ao OldBook Reader, onde manuscritos esquecidos ganham nova
             vida através da tecnologia – leia, descubra e transcreva séculos de
             história em um só lugar
           </p>
-          <div className="mt-6">
-            <FiPaperclip className="w-6 h-6"/>
+          <div className="mt-6 flex justify-center md:justify-start">
+            <FiPaperclip className="w-6 h-6 text-cyan-400" />
           </div>
         </div>
 
-        {/* Right image composition */}
-        <div className="flex ml-10 transition-transform transform scale-80 hover:scale-90 transition-all duration-300">
+        {/* Logo */}
+        <div className="flex transition-transform transform scale-95 hover:scale-100 transition-all duration-300">
           <img src={Logo} alt="OldBook Logo" />
         </div>
       </main>
 
       {/* Top Navigation */}
-      <header className="absolute top-0 w-full flex justify-between items-center px-20 py-4 bg-transparent text-white">
+      <header className="absolute top-0 w-full flex items-center justify-between px-6 sm:px-10 md:px-20 py-4 bg-transparent text-white">
         <div className="text-xl">
           <span className="text-blue-400 font-semibold">OldBook</span>
           <span className="font-light"> Reader</span>
         </div>
-        <nav className="space-x-6 hidden md:flex text-sm font-light scale-120">
-          <a href="#" className="text-blue-400 hover:scale-125 transition-all duration-300 hover:px-2 transition-all duration-300">Home</a>
-          <span className="text-white group-hover:scale-125">•</span>
-          <a href="#" className="hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300">Coleções públicas</a>
+
+        {/* Nav - Desktop */}
+        <nav className="hidden md:flex space-x-6 text-sm font-light items-center">
+          <a
+            href="#"
+            className="text-blue-400 hover:scale-125 transition-all duration-300 hover:px-2"
+          >
+            Home
+          </a>
           <span className="text-white">•</span>
-          <a href="#" className="hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300">Transcrever</a>
+          <a
+            href="#"
+            className="hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300"
+          >
+            Coleções públicas
+          </a>
+          <span className="text-white">•</span>
+          <a
+            href="#"
+            className="hover:text-cyan-300 hover:scale-125 hover:px-2 transition-all duration-300"
+          >
+            Transcrever
+          </a>
         </nav>
-        <div className="space-x-4 flex items-center scale-120">
-          <button>
+
+        {/* Ações topo */}
+        <div className="flex items-center space-x-4">
+          <button className="hover:text-cyan-300 transition duration-300">
             <svg
               className="w-5 h-5"
               fill="none"
@@ -72,11 +119,30 @@ const Home = () => {
               />
             </svg>
           </button>
-          <button>
-            <FaRegUser/>
+          <button className="hover:text-cyan-300 transition duration-300">
+            <FaRegUser />
+          </button>
+
+          {/* Hamburguer - mobile only */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-white hover:text-cyan-300 transition"
+          >
+            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-16 left-0 w-full bg-gray-800 text-white flex flex-col items-center space-y-6 overflow-hidden transition-all duration-500 md:hidden ${
+          menuOpen ? "max-h-96 py-6" : "max-h-0 py-0"
+        }`}
+      >
+        <a href="#" className="hover:text-cyan-300 text-lg">Home</a>
+        <a href="#" className="hover:text-cyan-300 text-lg">Coleções públicas</a>
+        <a href="#" className="hover:text-cyan-300 text-lg">Transcrever</a>
+      </div>
     </div>
   );
 };
