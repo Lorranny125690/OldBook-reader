@@ -90,7 +90,6 @@ const Collections = () => {
         </div>
       ) : (
         <motion.div
-        onClick={() => navigation("/book")}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8}} 
@@ -101,7 +100,7 @@ const Collections = () => {
               className="bg-gray-800 rounded-b-xl overflow-hidden shadow-md hover:scale-105 transition-all duration-300 ease-in-out"
             >
               {/* Imagem */}
-              <div className="h-60 w-full bg-gray-700 flex items-center justify-center">
+              <div onClick={() => navigation("/book")} className="h-60 w-full bg-gray-700 flex items-center justify-center">
                 <img
                   src={item.image}
                   alt={item.title}
