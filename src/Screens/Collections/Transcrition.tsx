@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const mockItems = [
   {
@@ -24,6 +25,7 @@ const mockItems = [
 
 const Collections = () => {
   const [items, setItems] = useState(mockItems);
+  const navigation = useNavigate();
 
   const handleAdd = () => {
     const id = items.length + 1;
@@ -88,6 +90,7 @@ const Collections = () => {
         </div>
       ) : (
         <motion.div
+        onClick={() => navigation("/book")}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8}} 
