@@ -46,12 +46,12 @@ const Collections = () => {
       <main 
         className="flex-1 px-6 sm:px-8 md:px-20 flex flex-col mt-30 relative gap-10"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
+        <motion.div  initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8}} 
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
               key={index}
               className="bg-gray-800 cursor-pointer rounded-b-xl overflow-hidden shadow-md hover:scale-105 transition-all duration-300 ease-in-out"
             >
@@ -70,9 +70,9 @@ const Collections = () => {
                   Manuscrito Antigo #{index + 1}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </main>
     </div>
   );

@@ -71,7 +71,7 @@ const Home = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8}} 
+          transition={{ duration: 0.8, delay: 0.1}} 
           className="max-w-2xl space-y-4 text-center md:text-left">
           <h1 className="text-4xl md:text-5xl hover:text-6xl transition-all duration-300 font-light leading-snug">
             Onde o passado <br />
