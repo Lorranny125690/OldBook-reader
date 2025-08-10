@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { FaBars, FaRegUser, FaTimes } from "react-icons/fa";
 import { Menu } from "./MobileMenu";
 import icon from "../assets/SiteIcon.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -129,11 +129,11 @@ export const Header = () => {
             }`}
           >
             <ul className="py-2 text-sm">
-              <li>
+              <Link to="/user"><li>
                 <button className="block w-full text-left px-4 py-2 hover:text-gray-300 transition">
                   Ver perfil
                 </button>
-              </li>
+              </li></Link>
               <li>
                 <button className="block w-full text-left px-4 py-2 hover:text-gray-300 transition">
                   Editar perfil

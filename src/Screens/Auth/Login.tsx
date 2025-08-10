@@ -59,7 +59,7 @@ export const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black">
-      <header className="relative h-[60vh] bg-cover bg-center" style={{ backgroundImage: `url(${image1})` }}>
+      <header className="relative h-[60vh] bg-cover bg-center z-100" style={{ backgroundImage: `url(${image1})` }}>
         <div className="relative z-10 flex text-2xl justify-between items-center w-full px-6 py-4">
           <nav className="flex items-center gap-3 text-white font-serif">
             <span className="text-[#0077FF] font-semibold">OldBook</span>
